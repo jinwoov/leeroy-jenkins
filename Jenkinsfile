@@ -13,13 +13,16 @@ pipeline {
         }
         stage('Build') {
             steps {
+                script {
+                    sc.echo_out('Building....')
+                }
                 sh 'docker build -t dogworld:latest .'
             }
         }
         stage('Test') {
             steps {
                 script {
-                    sc.echo_out('Testing..')
+                    sc.echo_out('Testing....')
                 }
             }
         }

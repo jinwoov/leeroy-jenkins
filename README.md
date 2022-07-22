@@ -1,3 +1,7 @@
-Dog being derpy as puppy.
+# Dog World
 
-Bow Wow
+I woof ruff and poof
+
+wow bow chow
+
+All dogs are precious

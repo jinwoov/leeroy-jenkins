@@ -24,4 +24,4 @@ def random_dog():
   return jsonify(random_dogs)
 
 if __name__ == "__main__":
-  api.run(port=1234)
+  api.run(port=1234, debug=True)

@@ -6,7 +6,7 @@ WORKDIR /python-docker
 
 COPY . .
 
-RUN pip3 install -r src/requirements.txt
+RUN pip3 install -r requirements.txt
 
 ENV FLASK_APP="src/dog_app" \
   FLASK_RUN_PORT=1234

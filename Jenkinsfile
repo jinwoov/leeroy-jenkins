@@ -1,7 +1,14 @@
+def sc
+
 pipeline {
     agent any
 
     stages {
+        stage('init') {
+            steps{
+                sc = load 'script.groovy'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'docker build -t dogworld:latest .'
@@ -14,13 +21,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-
-                sh '''
-                    docker rm -f dogworld || true
-
-                    docker run -p 1234:1234 -d --name dogworld dogworld:latest
-                '''
+                script {
+                    sc.echo_out('Deploying....')
+                    sc.docker_deploy()
+                }
             }
         }
     }

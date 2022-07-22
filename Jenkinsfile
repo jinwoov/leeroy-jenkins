@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                     docker rm -f dogworld || true
 
-                    docker run -p 1234:1234 -d -t dogworld dogworld:latest
+                    docker run -p 1234:1234 -d --name dogworld dogworld:latest
                 '''
             }
         }

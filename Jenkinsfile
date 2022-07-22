@@ -15,6 +15,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+
+                sh '''
+                    docker rm -f dogworld || true
+
+                    docker run -p 1234:1234 -d -t dogworld dogworld:latest
+                '''
             }
         }
     }

@@ -1,6 +1,6 @@
 FROM python:3.8-slim-buster
 
-LABEL "maintainer"="puppyco corporarted"
+LABEL maintainer="Jk"
 
 WORKDIR /python-docker
 

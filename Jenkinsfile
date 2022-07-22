@@ -18,15 +18,22 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                script {
+                    sc.echo_out('Testing..')
+                }
             }
         }
         stage('Deploy') {
             steps {
                 script {
                     sc.echo_out('Deploying....')
-                    sc.docker_deploy()
                 }
+                sh '''
+                    docker rm -f dogworld || true
+
+                    docker run -p 1234:1234 -d --name dogworld dogworld:latest
+                
+                '''
             }
         }
     }

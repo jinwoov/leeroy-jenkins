@@ -4,9 +4,9 @@ LABEL maintainer="Jk"
 
 WORKDIR /python-docker
 
-RUN pip3 install Flask
-
 COPY . .
+
+RUN pip3 install -r src/requirements.txt
 
 ENV FLASK_APP="src/dog_app" \
   FLASK_RUN_PORT=1234

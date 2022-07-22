@@ -1,7 +1,7 @@
-from flask import Flask,jsonify
-from requests import request
+from flask import Flask,jsonify,request
 
 dogs = [{"age": 3, "name": "mochi"}, {"age": 16, "name": "kudo"}, {"age": 1, "name": "Ozzie"}]
+random_dogs = []
 
 api = Flask(__name__)
 
@@ -15,7 +15,13 @@ def home_page():
 
 @api.route("/addpup", methods=['POST'])
 def add_dog():
-  print(request.json)
+  res = request.json
+  random_dogs.append(res)
+  return jsonify(res)
+
+@api.route('/randomdogs')
+def random_dog():
+  return jsonify(random_dogs)
 
 if __name__ == "__main__":
   api.run(port=1234)

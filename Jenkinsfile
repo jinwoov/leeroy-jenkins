@@ -44,8 +44,8 @@ pipeline {
         }
 
         stage('Smoke Test') {
+            agent {docker 'postman/newman'}
             steps {
-                agent {docker 'postman/newman'}
                 script {
                     sc.echo_out('Smoke Testing....')
                 }

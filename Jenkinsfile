@@ -48,7 +48,9 @@ pipeline {
                 script {
                     sc.echo_out('Smoke Testing....')
                 }
-                sh 'newman run smoke-tests/dogworld.postman_collection.json --environment dogworld_env.postman_environment.json'
+                sh """
+                    newman run smoke-tests/dogworld.postman_collection.json --environment dogworld_env.postman_environment.json'
+                """
             }
         }
     }

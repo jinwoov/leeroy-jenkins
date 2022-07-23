@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sc.echo_out('Building....')
                 }
-                sh "docker build -t ${IMAGENAME}:${IMAGETAG} ."
+                sh "docker build -t ${params.IMAGENAME}:${params.IMAGETAG} ."
             }
         }
         stage('Deploy') {
@@ -38,9 +38,9 @@ pipeline {
                 script {
                     sc.echo_out('Deploying....')
                 }
-                sh "docker rm -f ${IMAGENAME} || true"
+                sh "docker rm -f ${params.IMAGENAME} || true"
 
-                sh "docker run -p 1234:1234 -d --name ${IMAGENAME} ${IMAGENAME}:${IMAGETAG}"
+                sh "docker run -p 1234:1234 -d --name ${params.IMAGENAME} ${params.IMAGENAME}:${params.IMAGETAG}"
             }
         }
     }

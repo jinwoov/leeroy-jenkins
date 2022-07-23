@@ -21,7 +21,7 @@ pipeline {
                 script {
                     sc.echo_out('Testing....')
                 }
-                sh pytest --verbose ./tests
+                sh 'pytest --verbose ./tests'
             }
         }
         stage('Build') {

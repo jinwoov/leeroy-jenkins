@@ -49,7 +49,7 @@ pipeline {
                     sc.echo_out('Smoke Testing....')
                 }
                 sh '''
-                    docker run -t --rm -v smoke_tests:/tmp/smoke_tests postman/newman:alpine /tmp/smoke_tests dogworld.postman_collection.json \
+                    newman smoke-tests/dogworld.postman_collection.json \
                         --environment=dogworld_env.postman_environment.json
                 '''
             }

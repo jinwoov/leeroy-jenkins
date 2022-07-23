@@ -1,0 +1,7 @@
+FROM node:lts-alpine3.15
+
+LABEL maintainer="Jk" \
+      imagelabel="newman"
+
+RUN npm install -g newman \
+    && newman --version

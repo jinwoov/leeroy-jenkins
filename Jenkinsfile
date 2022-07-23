@@ -24,6 +24,9 @@ pipeline {
                 script {
                     sc.echo_out('Testing....')
                 }
+                sh '''
+                    pytest
+                '''
             }
         }
         stage('Deploy') {

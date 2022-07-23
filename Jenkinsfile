@@ -2,24 +2,20 @@ def sc
 
 pipeline {
     agent any
+    parameters {
+        string(name: 'IMAGENAME', defaultValue: 'dogworld', description: 'Image Name')
+        string(name: 'IMAGETAG', defaultValue: 'latest', description: 'Image Tag')
+    }
 
     stages {
-        stage('init') {
+        stage('Init') {
             steps{
                 script{
                     sc = load 'script.groovy'
                 }
             }
         }
-        stage('Build') {
-            steps {
-                script {
-                    sc.echo_out('Building....')
-                }
-                sh 'docker build -t dogworld:latest .'
-            }
-        }
-        stage('Test') {
+        stage('Unit-Test') {
             steps {
                 script {
                     sc.echo_out('Testing....')
@@ -29,17 +25,22 @@ pipeline {
                 '''
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    sc.echo_out('Building....')
+                }
+                sh "docker build -t ${IMAGENAME}:${IMAGETAG} ."
+            }
+        }
         stage('Deploy') {
             steps {
                 script {
                     sc.echo_out('Deploying....')
                 }
-                sh '''
-                    docker rm -f dogworld || true
+                sh "docker rm -f ${IMAGENAME} || true"
 
-                    docker run -p 1234:1234 -d --name dogworld dogworld:latest
-                
-                '''
+                sh "docker run -p 1234:1234 -d --name ${IMAGENAME} ${IMAGENAME}:${IMAGETAG}"
             }
         }
     }

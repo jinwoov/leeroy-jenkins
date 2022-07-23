@@ -45,13 +45,14 @@ pipeline {
 
         stage('Smoke Test') {
             steps {
+                agent {docker 'postman/newman'}
                 script {
                     sc.echo_out('Smoke Testing....')
                 }
                 sh """
                     ls
-                    docker run -t --rm -v smoke_tests:/tmp/smoke_tests postman/newman:alpine run /tmp/smoke_tests/dogworld.postman_collection.json \
-                        --environment=/tmp/smoke_tests/dogworld_env.postman_environment.json
+                    newman run smoke_tests/dogworld.postman_collection.json \
+                        --environment /smoke_tests/dogworld_env.postman_environment.json
                 """
             }
         }

@@ -25,8 +25,7 @@ pipeline {
                     sc.echo_out('Testing....')
                 }
                 sh '''
-                    coverage run -m pytest --verbose tests \
-                    && coverage report -m
+                   pytest --verbose ./tests
                 '''
             }
         }

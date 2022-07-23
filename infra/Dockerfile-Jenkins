@@ -9,6 +9,6 @@ RUN apt-get update \
       docker.io \
       python3 \
       python3-pip \
-  && pip install pytest Flask coverage
+  && pip install pytest Flask
 
 USER jenkins

@@ -50,7 +50,7 @@ pipeline {
                 }
                 sh """
                     cd smoke-tests
-                    docker run -t --rm -v smoke_tests:/tmp/smoke_tests postman/newman:alpine /tmp/smoke_tests/dogworld.postman_collection.json \
+                    docker run -t --rm -v smoke_tests:/tmp/smoke_tests postman/newman:alpine run /tmp/smoke_tests/dogworld.postman_collection.json \
                         --environment=/tmp/smoke_tests/dogworld_env.postman_environment.json
                 """
             }
